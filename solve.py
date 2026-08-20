@@ -4,6 +4,8 @@ The obvious implementation, and deliberately so: this exists to exercise the
 whole chain — kernel, specification, bundle, submission, runner — rather than
 to be quick. A faster one is what the catalogue is for.
 """
+import time
+
 from fherma import Inputs, Outputs, Point, Tensor
 
 
@@ -14,6 +16,7 @@ def init(p: Point):
 
 
 def run(state, inp: Inputs) -> Outputs:
+    time.sleep(3)
     n = state
     a, b = inp.a.data, inp.b.data
     return Outputs(c=Tensor((n,), [a[i] * b[i] for i in range(n)], "i64"))
